@@ -13,12 +13,13 @@ ifeq ($(ARCH),)
 endif
 
 # arch flag
+COMPILER_ARCH_FLAG :=
 ifeq ($(ARCH),x86)
 	COMPILER_ARCH_FLAG := -m32
 endif
 
 ifeq ($(ARCH),x86_64)
-	COMPILER_ARCH_FLAG := -m64 -DMSym64
+	COMPILER_ARCH_FLAG := -m64
 endif
 
 COMPILER_FlAGS_BASIC := -Wall -c $(COMPILER_ARCH_FLAG) -fvisibility=hidden
@@ -44,8 +45,7 @@ HEADERS := \
 	JniHelper.h    \
 	JniField.h     \
 	JniArray.h     \
-	JniObject.h    \
-	Environment.h        
+	JniObject.h       
 
 ###################################################
 
