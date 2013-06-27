@@ -5,6 +5,7 @@
 #include <jni.h>
 
 
+#include <JniForwards.h>
 #include <JniObject.h>
 
 

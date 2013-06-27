@@ -45,7 +45,8 @@ HEADERS := \
 	JniHelper.h    \
 	JniField.h     \
 	JniArray.h     \
-	JniObject.h       
+	JniObject.h    \
+	JniForwards.h  
 
 ###################################################
 

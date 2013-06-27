@@ -9,6 +9,7 @@
 #include <jni.h>
 
 
+#include <JniForwards.h>
 #include <JniString.h>
 #include <JniClass.h>
 

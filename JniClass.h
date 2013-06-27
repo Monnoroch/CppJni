@@ -4,21 +4,12 @@
 #include <jni.h>
 
 
+#include <JniForwards.h>
 #include <JniObject.h>
 
 
 namespace JNI
 {
-	template<typename R>
-	class JavaMethod;
-	template<typename R>
-	class JavaStaticMethod;
-
-	template<typename T>
-	class JavaField;
-	template<typename T>
-	class JavaStaticField;
-
 
 	class JavaClass : public JavaObject
 	{

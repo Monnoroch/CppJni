@@ -4,6 +4,9 @@
 #include <jni.h>
 
 
+#include <JniForwards.h>
+
+
 namespace JNI
 {
 	// static int global_ref_cnst = 0; // DEBUG
