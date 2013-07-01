@@ -8,7 +8,7 @@ namespace JNI
 
 	jclass JavaClass::GetClass(JNIEnv * env, const char * name)
 	{
-		if(env == 0)
+		if(env == nullptr)
 		{
 			// LOGE("Cannot load class %s, broken JNIEnv.", name);
 			return 0;

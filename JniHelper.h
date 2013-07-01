@@ -19,11 +19,11 @@ namespace JNI
 	class JniHelper
 	{
 	public:
-		JniHelper() : mJVM(0) {}
+		JniHelper() : mJVM(nullptr) {}
 
 		~JniHelper()
 		{
-			mJVM = 0;
+			mJVM = nullptr;
 		}
 
 		jint Version() const
@@ -39,7 +39,7 @@ namespace JNI
 
 		JNIEnv * getJNIEnv() const
 		{
-			JNIEnv * env = 0;
+			JNIEnv * env = nullptr;
 			JavaVMAttachArgs attachArgs;
 
 			jint res = mJVM->GetEnv((void**) &env, Version());
@@ -51,19 +51,19 @@ namespace JNI
 					attachArgs.version = Version();
 					attachArgs.name = (char*) "";
 					attachArgs.group = 0;
-					res = mJVM->AttachCurrentThread((void**)&env, &attachArgs);
+					res = mJVM->AttachCurrentThread((void**) &env, &attachArgs);
 					if(res != JNI_OK)
 					{
 						// LOGE("getJNIEnv: failed to attach to current thread.");
-						return 0;
+						return nullptr;
 					}
 					break;
 				case JNI_EVERSION:
 					// LOGE("getJNIEnv: Unsupported JNI version.");
-					return 0;
+					return nullptr;
 				default:
 					// LOGE("getJNIEnv: JNI API error.");
-					return 0;
+					return nullptr;
 			}
 			return env;
 		}

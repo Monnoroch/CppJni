@@ -26,13 +26,13 @@ namespace JNI
 		};
 
 	public:
-		JavaFieldHelper() : env(0), id(0) {}
+		JavaFieldHelper() : env(nullptr), id(0) {}
 		JavaFieldHelper(JNIEnv * e, jfieldID mid) : env(e), id(mid) {}
 		JavaFieldHelper(const JavaFieldHelper& m) : env(m.env), id(m.id) {}
 
 		bool Valid() const
 		{
-			return env != 0 && id != 0;
+			return env != nullptr && id != 0;
 		}
 
 		template<class T> T Get(jobject self)

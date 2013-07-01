@@ -22,7 +22,7 @@ namespace JNI
 		};
 
 	public:
-		JavaObject() : mEnv(0), obj(0) {}
+		JavaObject() : mEnv(nullptr), obj(0) {}
 		JavaObject(JNIEnv * env, jobject o) : mEnv(env), obj(o)
 		{
 			// global_ref_cnt++; // DEBUG
@@ -54,7 +54,7 @@ namespace JNI
 			Destroy();
 		}
 
-		bool Valid() const { return mEnv != 0; }
+		bool Valid() const { return mEnv != nullptr; }
 		JNIEnv * Env() const { return mEnv; }
 
 		/// Нужно имплементировать!

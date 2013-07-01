@@ -19,7 +19,7 @@ namespace JNI
 		void Init()
 		{
 			if(Valid())
-				val = mEnv->GetStringUTFChars(Val(), 0);
+				val = mEnv->GetStringUTFChars(Val(), nullptr);
 		}
 
 		void Destroy()
@@ -75,7 +75,6 @@ namespace JNI
 		}
 
 	private:
-
 		const char * val;
 	};
 }
