@@ -56,7 +56,7 @@ public:
 	}
 
 	JavaString& operator=(JavaString&& str) {
-		(void) JavaObject::operator=(str);
+		(void) JavaObject::operator=(std::move(str));
 		std::swap(val, str.val);
 		return *this;
 	}

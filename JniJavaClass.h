@@ -47,7 +47,7 @@ public:
 	}
 
 	JavaClass& operator=(JavaClass&& cls) {
-		JavaObject::operator=(cls);
+		JavaObject::operator=(std::move(cls));
 		return *this;
 	}
 

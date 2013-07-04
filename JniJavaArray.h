@@ -32,7 +32,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -132,7 +141,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -232,7 +250,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -332,7 +359,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -432,7 +468,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -532,7 +577,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -632,7 +686,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -732,7 +795,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -822,7 +894,16 @@ public:
 	JavaArray(JavaArray&& a) : JavaObject(a) {}
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -909,7 +990,16 @@ public:
 	JavaArray(JavaArray&& a) : JavaObject(a) {}
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -996,7 +1086,16 @@ public:
 	JavaArray(JavaArray&& a) : JavaObject(a) {}
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -1083,7 +1182,16 @@ public:
 	JavaArray(JavaArray&& a) : JavaObject(a) {}
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
@@ -1175,7 +1283,16 @@ public:
 
 	virtual ~JavaArray() {}
 
-	using JavaObject::operator=;
+	JavaArray& operator=(const JavaArray& arr) {
+		JavaObject::operator=(arr);
+		return *this;
+	}
+
+	JavaArray& operator=(JavaArray&& arr) {
+		JavaObject::operator=(std::move(arr));
+		return *this;
+	}
+
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
