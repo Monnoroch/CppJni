@@ -93,6 +93,11 @@ public:
 	template<typename T>
 	JavaField<T> GetField(const char * name) const;
 
+	template<typename T>
+	T GetFieldValue(const char * name) const {
+		return GetField<T>(name).Get();
+	}
+
 protected:
 	void Reset(const JavaObject& o) {
 		Destroy();

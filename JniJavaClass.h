@@ -117,6 +117,11 @@ public:
 		return JavaStaticField<T>(*this, StaticFieldGetter<T>().Get(*this, name));
 	}
 
+	template<typename T>
+	T GetStaticFieldValue(const char * name) const {
+		return GetStaticField<T>(name).Get();
+	}
+
 private:
 	static jclass GetClass(JavaEnv env, const char * name);
 };
