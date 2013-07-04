@@ -34,10 +34,27 @@ COMPILER_FLAGS_RELEASE := -O3
 COMPILER_FLAGS := $(COMPILER_FlAGS_BASIC) $(COMPILER_FLAGS_$(BUILD_MODE))
 
 
-SOURSE := JniHelper.cpp JniJavaVM.cpp JniJavaEnv.cpp JniProxy.cpp JniJavaObject.cpp JniJavaClass.cpp JniJavaString.cpp
+SOURSE := \
+	JniHelper.cpp \
+	JniJavaVM.cpp \
+	JniJavaEnv.cpp \
+	JniJavaObject.cpp \
+	JniJavaClass.cpp \
+	JniJavaString.cpp
 
-
-HEADERS := JniForwards.h JniHelper.h JniProxy.h JniSignatureBuilder.h JniJavaVM.h JniJavaEnv.h JniJavaObject.h JniJavaClass.h JniJavaString.h JniJavaArray.h JniJavaMethod.h
+HEADERS := \
+	JniForwards.h \
+	JniHelper.h \
+	JniProxy.h \
+	JniSignatureBuilder.h \
+	JniJavaVM.h \
+	JniJavaEnv.h \
+	JniJavaObject.h \
+	JniJavaClass.h \
+	JniJavaString.h \
+	JniJavaArray.h \
+	JniJavaMethod.h \
+	JniJavaField.h
 
 ###################################################
 

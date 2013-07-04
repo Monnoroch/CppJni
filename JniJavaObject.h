@@ -90,6 +90,9 @@ public:
 	template<typename T>
 	JavaMethod<T> GetMethod(const char * name) const;
 
+	template<typename T>
+	JavaField<T> GetField(const char * name) const;
+
 protected:
 	void Reset(const JavaObject& o) {
 		Destroy();
@@ -119,6 +122,15 @@ private:
 protected:
 	JavaEnv _env;
 	jobject _obj;
+};
+
+
+class JavaBoolean : public JavaObject {
+public:
+	JavaBoolean() : JavaObject() {}
+	JavaBoolean(JavaEnv env, jobject obj) : JavaObject(env, obj) {}
+	JavaBoolean(const JavaBoolean& str) : JavaObject(str) {}
+	JavaBoolean(JavaBoolean&& str) : JavaObject(str) {}
 };
 
 }

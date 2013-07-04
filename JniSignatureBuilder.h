@@ -96,6 +96,13 @@ struct JniSignatureBuilder<JavaString> {
 	}
 };
 
+template<>
+struct JniSignatureBuilder<JavaBoolean> {
+	static std::string Signature() {
+		return "Ljava/lang/Boolean;";
+	}
+};
+
 template<typename T>
 struct JniSignatureBuilder<JavaArray<T>> {
 	static std::string Signature() {
@@ -106,16 +113,23 @@ struct JniSignatureBuilder<JavaArray<T>> {
 template<>
 struct JniSignatureBuilder<std::string> {
 	static std::string Signature() {
-		return "Ljava/lang/String;";
+		return JniSignatureBuilder<JavaString>::Signature();
 	}
 };
 
 template<typename T>
 struct JniSignatureBuilder<std::vector<T>> {
 	static std::string Signature() {
-		return "[" + JniSignatureBuilder<T>::Signature();
+		return JniSignatureBuilder<JavaArray<T>>::Signature();
 	}
 };
+
+// template<>
+// struct JniSignatureBuilder<TestJniInt> {
+// 	static std::string Signature() {
+// 		return "I";
+// 	}
+// };
 
 
 template<typename R, typename ... Args>

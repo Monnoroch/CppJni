@@ -13,6 +13,12 @@ namespace JNI {
 class JavaClass : public JavaObject {
 	template<typename R, typename ... Args>
 	struct MethodGetter;
+	template<typename R, typename ... Args>
+	struct StaticMethodGetter;
+	template<typename T>
+	struct FieldGetter;
+	template<typename T>
+	struct StaticFieldGetter;
 
 public:
 	JavaClass() : JavaObject() {}
@@ -30,7 +36,7 @@ public:
 
 	template<typename R, typename ... Args>
 	JavaObject NewObject(Args&& ... args) {
-		return JavaObject(_env, _env.Val()->NewObject(Val(), GetConstructor<R(Args...)>().Val(), MakeJniProxy(_env, std::forward<Args>(args)).Val()...));
+		return FromJavaProxy<JavaObject>(_env, _env.Val()->NewObject(Val(), GetConstructor<R(Args...)>().Val(), ToJavaProxy(_env, std::forward<Args>(args)).Val()...)).Val();
 	}
 
 	virtual ~JavaClass() {}
@@ -89,42 +95,29 @@ public:
 
 	template<typename T>
 	JavaStaticMethod<T> GetStaticMethod(const char * name) const {
-		return JavaStaticMethod<T>(*this, MethodGetter<T>().Get(*this, name));
+		return JavaStaticMethod<T>(*this, StaticMethodGetter<T>().Get(*this, name));
 	}
 
 	JavaStaticMethod<void()> GetDefaultConstructor() const;
 
+	// почему-то, конструктор в JNI -- не статический метод класса О_о
+	// я сделал статическим
 	template<typename T>
 	JavaStaticMethod<T> GetConstructor() const {
-		return GetStaticMethod<T>("<init>");
+		return JavaStaticMethod<T>(*this, MethodGetter<T>().Get(*this, "<init>"));
 	}
 
-	// template<typename T>
-	// JavaField<T> GetField(const char * name, const char * sig) const
-	// {
-	// 	jfieldID id = mEnv->GetFieldID(Val(), name, sig);
-	// 	if(id == 0)
-	// 	{
-	// 		LOGE("JavaClass::GetField: cannot find method %s.", name);
-	// 		return JavaField<T>();
-	// 	}
-	// 	return JavaField<T>(mEnv, id);
-	// }
+	template<typename T>
+	JavaField<T> GetField(const JavaObject& obj, const char * name) const {
+		return JavaField<T>(obj, FieldGetter<T>().Get(*this, name));
+	}
 
-	// template<typename T>
-	// JavaStaticField<T> GetStaticField(const char * name, const char * sig) const
-	// {
-	// 	jfieldID id = mEnv->GetStaticFieldID(Val(), name, sig);
-	// 	if(id == 0)
-	// 	{
-	// 		LOGE("JavaClass::GetField: cannot find method %s.", name);
-	// 		return JavaStaticField<T>(*this);
-	// 	}
-	// 	return JavaStaticField<T>(*this, id);
-	// }
+	template<typename T>
+	JavaStaticField<T> GetStaticField(const char * name) const {
+		return JavaStaticField<T>(*this, StaticFieldGetter<T>().Get(*this, name));
+	}
 
 private:
-
 	static jclass GetClass(JavaEnv env, const char * name);
 };
 
@@ -137,12 +130,38 @@ struct JavaClass::MethodGetter<R(Args...)> {
 	}
 };
 
+template<typename R, typename ... Args>
+struct JavaClass::StaticMethodGetter<R(Args...)> {
+	jmethodID Get(const JavaClass& self, const char * name) const {
+		return self.Env().Val()->GetStaticMethodID(self.Val(), name, JniSignatureBuilder<R(Args...)>::Signature().c_str());
+	}
+};
+
+template<typename T>
+struct JavaClass::FieldGetter {
+	jfieldID Get(const JavaClass& self, const char * name) const {
+		return self.Env().Val()->GetFieldID(self.Val(), name, JniSignatureBuilder<T>::Signature().c_str());
+	}
+};
+
+template<typename T>
+struct JavaClass::StaticFieldGetter {
+	jfieldID Get(const JavaClass& self, const char * name) const {
+		return self.Env().Val()->GetStaticFieldID(self.Val(), name, JniSignatureBuilder<T>::Signature().c_str());
+	}
+};
+
 /////////////////////////////////////////////////////////////////////////////////////
 
 // Методы из JavaObject. Иначе никак нельзя: циклические зависимости в шаблонных методах.
 template<typename T>
 JavaMethod<T> JavaObject::GetMethod(const char * name) const {
 	return GetClass().GetMethod<T>(*this, name);
+}
+
+template<typename T>
+JavaField<T> JavaObject::GetField(const char * name) const {
+	return GetClass().GetField<T>(*this, name);
 }
 
 template<typename R, typename ... Args>
