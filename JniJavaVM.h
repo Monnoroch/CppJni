@@ -24,7 +24,7 @@ public:
 		JavaVMInitArgs args;
 		args.version = version;
 		args.nOptions = 0;
-		if(JNI_CreateJavaVM(&val, (void**) &env, &args) != 0) {
+		if(JNI_CreateJavaVM(&val, (void**) &env, &args) != JNI_OK) {
 			printf("Error: cannot create JavaVM!\n");
 		}
 	}
@@ -38,7 +38,7 @@ public:
 		std::string argCP = "-Djava.class.path=" + classPath;
 		options[0].optionString = (char*) argCP.c_str();
 		args.options = options;
-		if(JNI_CreateJavaVM(&val, (void**) &env, &args) != 0) {
+		if(JNI_CreateJavaVM(&val, (void**) &env, &args) != JNI_OK) {
 			printf("Error: cannot create JavaVM!\n");
 		}
 	}
@@ -70,11 +70,11 @@ public:
 	}
 
 	~JniJavaVM() {
-		if(doDestroy && Valid())
-			val->DestroyJavaVM();
+		Destroy();
 	}
 
 	JniJavaVM& operator=(const JniJavaVM& vm) {
+		Destroy();
 		val = vm.val;
 		version = vm.version;
 		doDestroy = false;
@@ -92,6 +92,13 @@ private:
 	JavaVM * val;
 	jint version;
 	bool doDestroy;
+
+	void Destroy() {
+		if(doDestroy && Valid()) {
+			val->DestroyJavaVM();
+			val = nullptr;
+		}
+	}
 };
 
 }

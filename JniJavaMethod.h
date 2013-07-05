@@ -120,7 +120,7 @@ public:
 	JavaMethod(const JavaMethod& m) : _obj(m._obj), val(m.val) {}
 	JavaMethod(JavaMethod&& m) : _obj(m._obj), val(m.val) {
 		m._obj = JavaObject();
-		m.val = 0;
+		m.val = nullptr;
 	}
 
 	JavaMethod& operator=(const JavaMethod& m) {
@@ -148,7 +148,7 @@ public:
 	}
 
 	bool Valid() const {
-		return _obj.Valid() &&  val != 0;
+		return _obj.Valid() &&  val != nullptr;
 	}
 
 	const JavaObject& GetObject() const {
@@ -273,7 +273,7 @@ public:
 	JavaStaticMethod(const JavaStaticMethod& m) : _cls(m._cls), val(m.val) {}
 	JavaStaticMethod(JavaStaticMethod&& m) : _cls(m._cls), val(m.val) {
 		m._cls = JavaClass();
-		m.val = 0;
+		m.val = nullptr;
 	}
 
 	JavaStaticMethod& operator=(const JavaStaticMethod& m) {
@@ -297,7 +297,7 @@ public:
 	}
 
 	bool Valid() const {
-		return _cls.Valid() &&  val != 0;
+		return _cls.Valid() &&  val != nullptr;
 	}
 
 	const JavaClass& GetClass() const {

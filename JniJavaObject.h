@@ -22,7 +22,7 @@ class JavaObject {
 	};
 
 public:
-	JavaObject() : JavaObject(JavaEnv(), 0) {}
+	JavaObject() : JavaObject(JavaEnv(), nullptr) {}
 	JavaObject(JavaEnv env, jobject o) : _env(env), _obj(o) {
 #ifdef MSYM_DEBUG_JNI_REF_CNT
 		if(Valid())            
@@ -36,7 +36,7 @@ public:
 	}
 	JavaObject(JavaObject&& o) : _env(o._env), _obj(o._obj) {
 		o._env = JavaEnv();
-		o._obj = 0;
+		o._obj = nullptr;
 	}
 
 	static JavaObject New(const JavaClass& cls);
@@ -73,7 +73,7 @@ public:
 
 	JavaClass GetClass() const;
 
-	bool Valid() const { return _env.Valid() && _obj != 0; }
+	bool Valid() const { return _env.Valid() && _obj != nullptr; }
 	JavaEnv Env() const { return _env; }
 
 	/// Нужно имплементировать!

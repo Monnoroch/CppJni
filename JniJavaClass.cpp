@@ -8,10 +8,10 @@ namespace JNI {
 jclass JavaClass::GetClass(JavaEnv env, const char * name) {
 	if(!env.Valid()) {
 		printf("Cannot load class %s, broken JavaEnv.", name);
-		return 0;
+		return nullptr;
 	}
 
-	jclass cls = 0;
+	jclass cls = nullptr;
 	bool dot = false;
 	const char * tmp = name;
 	while(*tmp != '\0') {
@@ -31,7 +31,7 @@ jclass JavaClass::GetClass(JavaEnv env, const char * name) {
 	}
 	else cls = env.Val()->FindClass(name);
 
-	if(cls == 0)
+	if(cls == nullptr)
 		printf("Cannot find class %s.", name);
 
 	return cls;

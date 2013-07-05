@@ -32,7 +32,7 @@ public:
 	JavaField(const JavaField& m) : _obj(m._obj), val(m.val) {}
 	JavaField(JavaField&& m) : _obj(m._obj), val(m.val) {
 		m._obj = JavaObject();
-		m.val = 0;
+		m.val = nullptr;
 	}
 
 	JavaField& operator=(const JavaField& m) {
@@ -68,7 +68,7 @@ public:
 	}
 
 	bool Valid() const {
-		return _obj.Valid() &&  val != 0;
+		return _obj.Valid() &&  val != nullptr;
 	}
 
 	const JavaObject& GetObject() const {
@@ -204,7 +204,7 @@ public:
 	JavaStaticField(const JavaStaticField& m) : _cls(m._cls), val(m.val) {}
 	JavaStaticField(JavaStaticField&& m) : _cls(m._cls), val(m.val) {
 		m._cls = JavaClass();
-		m.val = 0;
+		m.val = nullptr;
 	}
 
 	JavaStaticField& operator=(const JavaStaticField& m) {
@@ -236,7 +236,7 @@ public:
 	}
 
 	bool Valid() const {
-		return _cls.Valid() &&  val != 0;
+		return _cls.Valid() &&  val != nullptr;
 	}
 
 	const JavaClass& GetClass() const {

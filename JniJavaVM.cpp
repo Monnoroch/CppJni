@@ -16,7 +16,7 @@ JavaEnv JniJavaVM::GetEnv() const {
 		case JNI_EDETACHED:
 			attachArgs.version = Version();
 			attachArgs.name = (char*) "";
-			attachArgs.group = 0;
+			attachArgs.group = nullptr;
 			res = val->AttachCurrentThread((void**) &env, &attachArgs);
 			if(res != JNI_OK)
 			{

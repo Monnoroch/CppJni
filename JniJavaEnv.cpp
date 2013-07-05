@@ -7,7 +7,7 @@ namespace JNI {
 
 JniJavaVM JavaEnv::GetVM() const {
 	JavaVM * vm;
-	if(val->GetJavaVM(&vm) != 0) {
+	if(val->GetJavaVM(&vm) != JNI_OK) {
 		printf("Error: cannot get JavaVM from JNIEnv!\n");
 		return JniJavaVM(nullptr); // return invalid
 	}
