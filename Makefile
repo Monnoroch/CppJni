@@ -40,7 +40,8 @@ SOURSE := \
 	JniJavaEnv.cpp \
 	JniJavaObject.cpp \
 	JniJavaClass.cpp \
-	JniJavaString.cpp
+	JniJavaString.cpp \
+	JniProxy.cpp
 
 HEADERS := \
 	JniForwards.h \

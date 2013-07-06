@@ -124,12 +124,12 @@ struct JniSignatureBuilder<std::vector<T>> {
 	}
 };
 
-// template<>
-// struct JniSignatureBuilder<TestJniInt> {
-// 	static std::string Signature() {
-// 		return "I";
-// 	}
-// };
+template<>
+struct JniSignatureBuilder<TestJniInt> {
+	static std::string Signature() {
+		return "I";
+	}
+};
 
 
 template<typename R, typename ... Args>

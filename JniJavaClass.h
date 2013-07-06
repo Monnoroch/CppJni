@@ -35,7 +35,7 @@ public:
 	JavaObject NewObject() const;
 
 	template<typename R, typename ... Args>
-	JavaObject NewObject(Args&& ... args) {
+	JavaObject NewObject(Args&& ... args) const {
 		return FromJavaProxy<JavaObject>(_env, _env.Val()->NewObject(Val(), GetConstructor<R(Args...)>().Val(), ToJavaProxy(_env, std::forward<Args>(args)).Val()...)).Val();
 	}
 
@@ -174,9 +174,9 @@ JavaObject JavaObject::New(const JavaClass& cls, Args&& ... args) {
 	return cls.NewObject<R, Args...>(std::forward<Args>(args)...);
 }
 
-template<typename T>
-JavaObject JavaObject::New(JavaEnv env, const std::string& cls) {
-	return New(env.FindClass(cls));
+template<typename R, typename ... Args>
+JavaObject JavaObject::New(JavaEnv env, const std::string& cls, Args&& ... args) {
+	return New(env.FindClass(cls), std::forward<Args>(args)...);
 }
 
 }

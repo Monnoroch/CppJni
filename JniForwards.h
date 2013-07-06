@@ -150,16 +150,23 @@ class JavaStaticField;
 template<typename R, typename ... Args>
 struct JniSignatureBuilder;
 
+
+template<typename T>
+struct JniFromJavaProxy;
+
+template<typename T, typename J>
+static inline JniFromJavaProxy<T> FromJavaProxy(JavaEnv env, J v);
+
 }
 
-// namespace JNI {
+namespace JNI {
 
-// struct TestJniInt {
-// 	TestJniInt(int val) : _val(val) {}
-// 	int Val() const { return _val; }
-// 	int _val;
-// };
+struct TestJniInt {
+	TestJniInt(int val) : _val(val) {}
+	int Val() const { return _val; }
+	int _val;
+};
 
-// }
+}
 
 #endif

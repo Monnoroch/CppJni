@@ -75,14 +75,14 @@ struct JavaMethodCaller<jint> {
 	}
 };
 
-// template<>
-// struct JavaMethodCaller<TestJniInt> {
-// 	typedef TestJniInt R;
-// 	template<typename ... Args>
-// 	R Call(const JavaMethod<R(Args...)>& self, Args&& ... args) {
-// 		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
-// 	}
-// };
+template<>
+struct JavaMethodCaller<TestJniInt> {
+	typedef TestJniInt R;
+	template<typename ... Args>
+	R Call(const JavaMethod<R(Args...)>& self, Args&& ... args) {
+		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
+	}
+};
 
 template<>
 struct JavaMethodCaller<jlong> {
@@ -159,6 +159,14 @@ public:
 		return GetObject().GetClass();
 	}
 
+	bool operator==(const JavaMethod& m) const {
+		return _obj == m._obj && val == m.val;
+	}
+
+	bool operator!=(const JavaMethod& m) const {
+		return !(*this == m);
+	}
+
 private:
 	JavaObject _obj;
 	jmethodID val;
@@ -228,14 +236,14 @@ struct JavaStaticMethodCaller<jint> {
 	}
 };
 
-// template<>
-// struct JavaStaticMethodCaller<TestJniInt> {
-// 	typedef TestJniInt R;
-// 	template<typename ... Args>
-// 	R Call(const JavaStaticMethod<R(Args...)>& self, Args&& ... args) {
-// 		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallStaticIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
-// 	}
-// };
+template<>
+struct JavaStaticMethodCaller<TestJniInt> {
+	typedef TestJniInt R;
+	template<typename ... Args>
+	R Call(const JavaStaticMethod<R(Args...)>& self, Args&& ... args) {
+		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallStaticIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
+	}
+};
 
 template<>
 struct JavaStaticMethodCaller<jlong> {
@@ -306,6 +314,14 @@ public:
 
 	JavaEnv Env() const {
 		return _cls.Env();
+	}
+
+	bool operator==(const JavaStaticMethod& m) const {
+		return _cls == m._cls && val == m.val;
+	}
+
+	bool operator!=(const JavaStaticMethod& m) const {
+		return !(*this == m);
 	}
 
 private:

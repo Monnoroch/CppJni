@@ -25,7 +25,7 @@ public:
 	JavaObject() : JavaObject(JavaEnv(), nullptr) {}
 	JavaObject(JavaEnv env, jobject o) : _env(env), _obj(o) {
 #ifdef MSYM_DEBUG_JNI_REF_CNT
-		if(Valid())            
+		if(Valid())
 			globalRefCnt++;
 #endif
 	}
@@ -45,8 +45,8 @@ public:
 	template<typename R, typename ... Args>
 	static JavaObject New(const JavaClass& cls, Args&& ... args);
 
-	template<typename T>
-	static JavaObject New(JavaEnv env, const std::string& cls);
+	template<typename R, typename ... Args>
+	static JavaObject New(JavaEnv env, const std::string& cls, Args&& ... args);
 
 	JavaObject& operator=(const JavaObject& o) {
 		Reset(o);

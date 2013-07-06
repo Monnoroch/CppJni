@@ -9,29 +9,9 @@
 namespace JNI {
 
 class JavaString : public JavaObject {
-private:
-	void Init() {
-		if(Valid())
-			val = _env.Val()->GetStringUTFChars(Val(), nullptr);
-	}
-
-	void Destroy() {
-		if(Valid())
-			_env.Val()->ReleaseStringUTFChars(Val(), val);
-	}
-
-protected:
-	void Reset(const JavaString& str) {
-		Destroy();
-		JavaObject::Reset(str);
-		Init();
-	}
-
 public:
 	JavaString() : JavaObject() {}
-	JavaString(JavaEnv env, const char * val) : JavaObject(env, env.Val()->NewStringUTF(val)) {
-		Init();
-	}
+	JavaString(JavaEnv env, const char * val) : JavaString(env, env.Val()->NewStringUTF(val)) {}
 	JavaString(JavaEnv env, const std::string& val) : JavaString(env, val.c_str()) {}
 	JavaString(JavaEnv env, jstring str) : JavaObject(env, str) {
 		Init();
@@ -117,6 +97,23 @@ public:
 
 private:
 	const char * val;
+
+	void Init() {
+		if(Valid())
+			val = _env.Val()->GetStringUTFChars(Val(), nullptr);
+	}
+
+	void Destroy() {
+		if(Valid())
+			_env.Val()->ReleaseStringUTFChars(Val(), val);
+	}
+
+protected:
+	void Reset(const JavaString& str) {
+		Destroy();
+		JavaObject::Reset(str);
+		Init();
+	}
 };
 
 }

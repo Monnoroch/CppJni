@@ -4,6 +4,7 @@
 
 #include <JniForwards.h>
 #include <JniJavaObject.h>
+#include <JniProxy.h>
 
 
 namespace JNI {
@@ -14,7 +15,7 @@ class JavaArray<jboolean> : public JavaObject {
 	typedef jbooleanArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewBooleanArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -123,7 +124,7 @@ class JavaArray<jchar> : public JavaObject {
 	typedef jcharArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewCharArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -232,7 +233,7 @@ class JavaArray<jbyte> : public JavaObject {
 	typedef jbyteArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewByteArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -341,7 +342,7 @@ class JavaArray<jshort> : public JavaObject {
 	typedef jshortArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewShortArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -559,7 +560,7 @@ class JavaArray<jlong> : public JavaObject {
 	typedef jlongArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewLongArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -668,7 +669,7 @@ class JavaArray<jfloat> : public JavaObject {
 	typedef jfloatArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewFloatArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -777,7 +778,7 @@ class JavaArray<jdouble> : public JavaObject {
 	typedef jdoubleArray Arr;
 public:
 	JavaArray() : JavaObject() {}
-	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewIntArray(size)) {}
+	JavaArray(JavaEnv env, jsize size) : JavaObject(env, env.Val()->NewDoubleArray(size)) {}
 	JavaArray(JavaEnv env, const std::vector<Elem>& val) : JavaArray(env, val.size()) {
 		SetData(0, val.size(), &val[0]);
 	}
@@ -943,11 +944,11 @@ public:
 	}
 
 	Elem Get(jsize n) const {
-		return JavaObject(_env.Val(), _env.Val()->GetObjectArrayElement(Val(), n));
+		return FromJavaProxy<Elem>(_env, _env.Val()->GetObjectArrayElement(Val(), n)).Val();
 	}
 
 	void Set(jsize n, const Elem& val) {
-		_env.Val()->SetObjectArrayElement(Val(), n, val.Val());
+		_env.Val()->SetObjectArrayElement(Val(), n, ToJavaProxy<Elem>(_env, val).Val());
 	}
 
 	// TODO: operator[]
@@ -1039,11 +1040,11 @@ public:
 	}
 
 	Elem Get(jsize n) const {
-		return JavaString(_env.Val(), (jstring) _env.Val()->GetObjectArrayElement(Val(), n));
+		return FromJavaProxy<Elem>(_env, _env.Val()->GetObjectArrayElement(Val(), n)).Val();
 	}
 
 	void Set(jsize n, const Elem& val) {
-		_env.Val()->SetObjectArrayElement(Val(), n, val.Val());
+		_env.Val()->SetObjectArrayElement(Val(), n, ToJavaProxy<Elem>(_env, val).Val());
 	}
 
 	// TODO: operator[]
@@ -1135,11 +1136,11 @@ public:
 	}
 
 	Elem Get(jsize n) const {
-		return JavaArray<T>(_env.Val(), (jarray) _env.Val()->GetObjectArrayElement(Val(), n));
+		return FromJavaProxy<Elem>(_env, _env.Val()->GetObjectArrayElement(Val(), n)).Val();
 	}
 
 	void Set(jsize n, const Elem& val) {
-		_env.Val()->SetObjectArrayElement(Val(), n, val.Val());
+		_env.Val()->SetObjectArrayElement(Val(), n, ToJavaProxy<Elem>(_env, val).Val());
 	}
 
 	// TODO: operator[]
@@ -1231,12 +1232,12 @@ public:
 	}
 
 	Elem Get(jsize n) const {
-		return JavaString(_env.Val(), (jstring) _env.Val()->GetObjectArrayElement(Val(), n)).Value();
+		return FromJavaProxy<Elem>(_env, _env.Val()->GetObjectArrayElement(Val(), n)).Val();
 	}
 
 	void Set(jsize n, const Elem& val) {
 		// TODO: check if refcnt++ needed
-		_env.Val()->SetObjectArrayElement(Val(), n, JavaString(_env.Val(), val.c_str()).Val());
+		_env.Val()->SetObjectArrayElement(Val(), n, ToJavaProxy<Elem>(_env, val).Val());
 	}
 
 	// TODO: operator[]
@@ -1332,13 +1333,13 @@ public:
 	}
 
 	Elem Get(jsize n) const {
-		return JavaArray<T>(_env.Val(), (jarray) _env.Val()->GetObjectArrayElement(Val(), n)).ToVector();
+		return FromJavaProxy<Elem>(_env, _env.Val()->GetObjectArrayElement(Val(), n)).Val();
 	}
 
 	// TODO!
-	// void Set(jsize n, const Elem& val) {
-	// 	_env.Val()->SetObjectArrayElement(Val(), n, val.Val());
-	// }
+	void Set(jsize n, const Elem& val) {
+		_env.Val()->SetObjectArrayElement(Val(), n, ToJavaProxy<Elem>(_env, val).Val());
+	}
 
 	// TODO: operator[]
 

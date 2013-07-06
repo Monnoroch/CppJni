@@ -46,7 +46,7 @@ JavaClass JavaClass::New(JavaEnv env, const std::string& str) {
 }
 
 JavaObject JavaClass::NewObject() const {
-	return JavaObject(_env, _env.Val()->NewObject(Val(), GetDefaultConstructor().Val()));
+	return NewObject<void>();
 }
 
 JavaStaticMethod<void()> JavaClass::GetDefaultConstructor() const {
