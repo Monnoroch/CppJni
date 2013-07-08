@@ -54,6 +54,35 @@ public:
 	JavaClass FindClass(const char * name) const;
 	JavaClass FindClass(const std::string& str) const;
 
+	bool ExceptionCheck() const {
+		return val->ExceptionCheck() == JNI_TRUE;
+	}
+
+	void ExceptionClear() const {
+		val->ExceptionClear();
+	}
+
+	void FatalError(const char * str) const {
+		val->FatalError(str);
+	}
+
+	void FatalError(const std::string& str) const {
+		FatalError(str.c_str());
+	}
+
+	void ExceptionDescribe() const {
+		val->ExceptionDescribe();
+	}
+
+	jint Throw(const JavaException& ex) const;
+	jint Throw(const JavaClass& cls, const char * msg) const;
+
+	jint Throw(const JavaClass& cls, const std::string& msg) const {
+		return Throw(cls, msg.c_str());
+	}
+
+	JavaException ExceptionOccurred() const;
+
 private:
 	JNIEnv * val;
 };

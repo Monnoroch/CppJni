@@ -139,16 +139,16 @@ struct JavaFieldHelper<jint> {
 	}
 };
 
-template<>
-struct JavaFieldHelper<TestJniInt> {
-	typedef TestJniInt T;
-	T Get(const JavaField<T>& self) {
-		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetIntField(self.GetObject().Val(), self.Val())).Val();
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetIntField(self.GetObject().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
-	}
-};
+// template<>
+// struct JavaFieldHelper<TestJniInt> {
+// 	typedef TestJniInt T;
+// 	T Get(const JavaField<T>& self) {
+// 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetIntField(self.GetObject().Val(), self.Val())).Val();
+// 	}
+// 	void Set(const JavaField<T>& self, T&& val) {
+// 		self.Env().Val()->SetIntField(self.GetObject().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
+// 	}
+// };
 
 template<>
 struct JavaFieldHelper<jlong> {
@@ -307,16 +307,16 @@ struct JavaStaticFieldHelper<jint> {
 	}
 };
 
-template<>
-struct JavaStaticFieldHelper<TestJniInt> {
-	typedef TestJniInt T;
-	T Get(const JavaStaticField<T>& self) {
-		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetStaticIntField(self.GetClass().Val(), self.Val())).Val();
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticIntField(self.GetClass().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
-	}
-};
+// template<>
+// struct JavaStaticFieldHelper<TestJniInt> {
+// 	typedef TestJniInt T;
+// 	T Get(const JavaStaticField<T>& self) {
+// 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetStaticIntField(self.GetClass().Val(), self.Val())).Val();
+// 	}
+// 	void Set(const JavaStaticField<T>& self, T&& val) {
+// 		self.Env().Val()->SetStaticIntField(self.GetClass().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
+// 	}
+// };
 
 template<>
 struct JavaStaticFieldHelper<jlong> {

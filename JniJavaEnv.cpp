@@ -1,6 +1,7 @@
 #include <JniJavaEnv.h>
 #include <JniJavaVM.h>
 #include <JniJavaClass.h>
+#include <JniJavaException.h>
 
 
 namespace JNI {
@@ -20,6 +21,19 @@ JavaClass JavaEnv::FindClass(const char * name) const {
 
 JavaClass JavaEnv::FindClass(const std::string& name) const {
 	return FindClass(name.c_str());
+}
+
+jint JavaEnv::Throw(const JavaException& ex) const {
+	return ex.Throw();
+}
+
+jint JavaEnv::Throw(const JavaClass& cls, const char * msg) const {
+	return val->ThrowNew(cls.Val(), msg);
+}
+
+
+JavaException JavaEnv::ExceptionOccurred() const {
+	return FromJavaProxy<JavaException>(*this, val->ExceptionOccurred()).Val();
 }
 
 }

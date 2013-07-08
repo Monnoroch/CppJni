@@ -55,7 +55,8 @@ HEADERS := \
 	JniJavaString.h \
 	JniJavaArray.h \
 	JniJavaMethod.h \
-	JniJavaField.h
+	JniJavaField.h \
+	JniJavaException.h
 
 ###################################################
 

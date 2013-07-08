@@ -5,6 +5,7 @@
 #include <JniForwards.h>
 #include <JniProxy.h>
 #include <JniJavaObject.h>
+#include <JniJavaException.h>
 #include <JniSignatureBuilder.h>
 
 

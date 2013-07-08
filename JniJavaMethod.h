@@ -75,14 +75,14 @@ struct JavaMethodCaller<jint> {
 	}
 };
 
-template<>
-struct JavaMethodCaller<TestJniInt> {
-	typedef TestJniInt R;
-	template<typename ... Args>
-	R Call(const JavaMethod<R(Args...)>& self, Args&& ... args) {
-		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
-	}
-};
+// template<>
+// struct JavaMethodCaller<TestJniInt> {
+// 	typedef TestJniInt R;
+// 	template<typename ... Args>
+// 	R Call(const JavaMethod<R(Args...)>& self, Args&& ... args) {
+// 		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
+// 	}
+// };
 
 template<>
 struct JavaMethodCaller<jlong> {
@@ -236,14 +236,14 @@ struct JavaStaticMethodCaller<jint> {
 	}
 };
 
-template<>
-struct JavaStaticMethodCaller<TestJniInt> {
-	typedef TestJniInt R;
-	template<typename ... Args>
-	R Call(const JavaStaticMethod<R(Args...)>& self, Args&& ... args) {
-		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallStaticIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
-	}
-};
+// template<>
+// struct JavaStaticMethodCaller<TestJniInt> {
+// 	typedef TestJniInt R;
+// 	template<typename ... Args>
+// 	R Call(const JavaStaticMethod<R(Args...)>& self, Args&& ... args) {
+// 		return FromJavaProxy<R>(self.Env(), self.Env().Val()->CallStaticIntMethod(self.GetObject().Val(), self.Val(), ToJavaProxy(self.Env(), std::forward<Args>(args)).Val()...)).Val();
+// 	}
+// };
 
 template<>
 struct JavaStaticMethodCaller<jlong> {

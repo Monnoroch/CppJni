@@ -1,5 +1,7 @@
 #include <JniProxy.h>
 #include <JniJavaObject.h>
+#include <JniJavaException.h>
+#include <JniJavaClass.h>
 #include <JniJavaString.h>
 #include <JniJavaArray.h>
 
@@ -20,6 +22,14 @@ jobject JniToJavaProxy<JavaBoolean>::Val() const {
 
 JavaObject JniFromJavaProxy<JavaObject>::Val() const {
 	return JavaObject(_env, _obj);
+}
+
+JavaException JniFromJavaProxy<JavaException>::Val() const {
+	return JavaException(_env, _obj);
+}
+
+JavaClass JniFromJavaProxy<JavaClass>::Val() const {
+	return JavaClass(_env, _obj);
 }
 
 JavaString JniFromJavaProxy<JavaString>::Val() const {

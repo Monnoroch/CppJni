@@ -135,6 +135,7 @@ class JniHelper;
 class JniJavaVM;
 class JavaEnv;
 class JavaObject;
+class JavaException;
 class JavaClass;
 class JavaString;
 template<typename T>
@@ -159,14 +160,14 @@ static inline JniFromJavaProxy<T> FromJavaProxy(JavaEnv env, J v);
 
 }
 
-namespace JNI {
+// namespace JNI {
 
-struct TestJniInt {
-	TestJniInt(int val) : _val(val) {}
-	int Val() const { return _val; }
-	int _val;
-};
+// struct TestJniInt {
+// 	TestJniInt(int val) : _val(val) {}
+// 	int Val() const { return _val; }
+// 	int _val;
+// };
 
-}
+// }
 
 #endif

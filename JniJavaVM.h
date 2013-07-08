@@ -23,7 +23,10 @@ public:
 		JNIEnv * env;
 		JavaVMInitArgs args;
 		args.version = version;
-		args.nOptions = 0;
+		if(JNI_GetDefaultJavaVMInitArgs(&args) != JNI_OK) {
+			printf("JNI_GetDefaultJavaVMInitArgs failed!\n");
+			return;
+		}
 		if(JNI_CreateJavaVM(&val, (void**) &env, &args) != JNI_OK) {
 			printf("Error: cannot create JavaVM!\n");
 		}
