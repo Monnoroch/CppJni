@@ -150,6 +150,7 @@ template<typename T>
 class JavaStaticField;
 template<typename R, typename ... Args>
 struct JniSignatureBuilder;
+class JavaBoolean;
 
 
 template<typename T>

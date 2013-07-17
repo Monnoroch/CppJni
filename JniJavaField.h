@@ -15,10 +15,10 @@ namespace JNI {
 
 template<typename T>
 struct JavaFieldHelper {
-	T Get(const JavaField<T>& self) {
+	static T Get(const JavaField<T>& self) {
 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetObjectField(self.GetObject().Val(), self.Val())).Val();
 	}
-	void Set(const JavaField<T>& self, T&& val) {
+	static void Set(const JavaField<T>& self, T&& val) {
 		self.Env().Val()->SetObjectField(self.GetObject().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
 	}
 };
@@ -48,11 +48,11 @@ public:
 	}
 
 	T Get() const {
-		return JavaFieldHelper<T>().Get(*this);
+		return JavaFieldHelper<T>::Get(*this);
 	}
 
 	void Set(T&& v) {
-		JavaFieldHelper<T>().Set(*this, std::forward<T>(v));
+		JavaFieldHelper<T>::Set(*this, std::forward<T>(v));
 	}
 
 	operator T() const {
@@ -87,110 +87,74 @@ private:
 template<>
 struct JavaFieldHelper<jboolean> {
 	typedef jboolean T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetBooleanField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetBooleanField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jchar> {
 	typedef jchar T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetCharField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetCharField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jbyte> {
 	typedef jbyte T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetByteField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetByteField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jshort> {
 	typedef jshort T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetShortField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetShortField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jint> {
 	typedef jint T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetIntField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetIntField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 // template<>
 // struct JavaFieldHelper<TestJniInt> {
 // 	typedef TestJniInt T;
-// 	T Get(const JavaField<T>& self) {
-// 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetIntField(self.GetObject().Val(), self.Val())).Val();
-// 	}
-// 	void Set(const JavaField<T>& self, T&& val) {
-// 		self.Env().Val()->SetIntField(self.GetObject().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
-// 	}
+// 	static T Get(const JavaField<T>& self);
+// 	static void Set(const JavaField<T>& self, T&& val);
 // };
 
 template<>
 struct JavaFieldHelper<jlong> {
 	typedef jlong T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetLongField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetLongField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jfloat> {
 	typedef jfloat T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetFloatField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetFloatField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 template<>
 struct JavaFieldHelper<jdouble> {
 	typedef jdouble T;
-	T Get(const JavaField<T>& self) {
-		return self.Env().Val()->GetDoubleField(self.GetObject().Val(), self.Val());
-	}
-	void Set(const JavaField<T>& self, T&& val) {
-		self.Env().Val()->SetDoubleField(self.GetObject().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaField<T>& self);
+	static void Set(const JavaField<T>& self, T&& val);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
 struct JavaStaticFieldHelper {
-	T Get(const JavaStaticField<T>& self) {
+	static T Get(const JavaStaticField<T>& self) {
 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetStaticObjectField(self.GetClass().Val(), self.Val())).Val();
 	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
+	static void Set(const JavaStaticField<T>& self, T&& val) {
 		self.Env().Val()->SetStaticObjectField(self.GetClass().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
 	}
 };
@@ -220,11 +184,11 @@ public:
 	}
 
 	T Get() const {
-		return JavaStaticFieldHelper<T>().Get(*this);
+		return JavaStaticFieldHelper<T>::Get(*this);
 	}
 
 	void Set(T&& v) {
-		JavaStaticFieldHelper<T>().Set(*this, std::forward<T>(v));
+		JavaStaticFieldHelper<T>::Set(*this, std::forward<T>(v));
 	}
 
 	operator T() const {
@@ -255,100 +219,64 @@ private:
 template<>
 struct JavaStaticFieldHelper<jboolean> {
 	typedef jboolean T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticBooleanField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticBooleanField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jchar> {
 	typedef jchar T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticCharField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticCharField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jbyte> {
 	typedef jbyte T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticByteField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticByteField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jshort> {
 	typedef jshort T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticShortField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticShortField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jint> {
 	typedef jint T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env(), self.Env().Val()->GetStaticIntField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticIntField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 // template<>
 // struct JavaStaticFieldHelper<TestJniInt> {
 // 	typedef TestJniInt T;
-// 	T Get(const JavaStaticField<T>& self) {
-// 		return FromJavaProxy<T>(self.Env(), self.Env().Val()->GetStaticIntField(self.GetClass().Val(), self.Val())).Val();
-// 	}
-// 	void Set(const JavaStaticField<T>& self, T&& val) {
-// 		self.Env().Val()->SetStaticIntField(self.GetClass().Val(), self.Val(), ToJavaProxy<T>(self.Env(), std::forward<T>(val)).Val());
-// 	}
+// 	static T Get(const JavaStaticField<T>& self);
+// 	static void Set(const JavaStaticField<T>& self, T&& val);
 // };
 
 template<>
 struct JavaStaticFieldHelper<jlong> {
 	typedef jlong T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticLongField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticLongField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jfloat> {
 	typedef jfloat T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticFloatField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticFloatField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 template<>
 struct JavaStaticFieldHelper<jdouble> {
 	typedef jdouble T;
-	T Get(const JavaStaticField<T>& self) {
-		return self.Env().Val()->GetStaticDoubleField(self.GetClass().Val(), self.Val());
-	}
-	void Set(const JavaStaticField<T>& self, T&& val) {
-		self.Env().Val()->SetStaticDoubleField(self.GetClass().Val(), self.Val(), std::forward<T>(val));
-	}
+	static T Get(const JavaStaticField<T>& self);
+	static void Set(const JavaStaticField<T>& self, T&& val);
 };
 
 }

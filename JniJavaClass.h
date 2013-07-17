@@ -5,7 +5,6 @@
 #include <JniForwards.h>
 #include <JniProxy.h>
 #include <JniJavaObject.h>
-#include <JniJavaException.h>
 #include <JniSignatureBuilder.h>
 
 
@@ -22,12 +21,12 @@ class JavaClass : public JavaObject {
 	struct StaticFieldGetter;
 
 public:
-	JavaClass() : JavaObject() {}
-	JavaClass(JavaEnv env, jclass c) : JavaObject(env, c) {}
-	JavaClass(JavaEnv env, const char * val) : JavaClass(env, GetClass(env, val)) {}
-	JavaClass(JavaEnv env, const std::string& val) : JavaClass(env, GetClass(env, val.c_str())) {}
-	JavaClass(const JavaClass& c) : JavaObject(c) {}
-	JavaClass(JavaClass&& c) : JavaObject(c) {}
+	JavaClass();
+	JavaClass(JavaEnv env, jclass c);
+	JavaClass(JavaEnv env, const char * val);
+	JavaClass(JavaEnv env, const std::string& val);
+	JavaClass(const JavaClass& c);
+	JavaClass(JavaClass&& c);
 
 	static JavaClass New(JavaEnv env, const char * str);
 	static JavaClass New(JavaEnv env, const std::string& str);
@@ -40,36 +39,18 @@ public:
 		return FromJavaProxy<JavaObject>(_env, _env.Val()->NewObject(Val(), GetConstructor<R(Args...)>().Val(), ToJavaProxy(_env, std::forward<Args>(args)).Val()...)).Val();
 	}
 
-	virtual ~JavaClass() {}
+	virtual ~JavaClass();
 
-	JavaClass& operator=(const JavaClass& cls) {
-		JavaObject::operator=(cls);
-		return *this;
-	}
-
-	JavaClass& operator=(JavaClass&& cls) {
-		JavaObject::operator=(std::move(cls));
-		return *this;
-	}
+	JavaClass& operator=(const JavaClass& cls);
+	JavaClass& operator=(JavaClass&& cls);
 
 	using JavaObject::operator==;
 	using JavaObject::operator!=;
 
-	bool operator==(const JavaClass& cls) const {
-		return JavaObject::operator==(cls);
-	}
-
-	bool operator!=(const JavaClass& cls) const {
-		return JavaObject::operator!=(cls);
-	}
-
-	bool operator==(const std::string& str) const {
-		return *this == _env.FindClass(str);
-	}
-
-	bool operator!=(const std::string& str) const {
-		return !(*this == str);
-	}
+	bool operator==(const JavaClass& cls) const;
+	bool operator!=(const JavaClass& cls) const;
+	bool operator==(const std::string& str) const;
+	bool operator!=(const std::string& str) const;
 
 	friend bool operator==(const std::string& str, const JavaClass& self) {
 		return self == str;
@@ -79,15 +60,9 @@ public:
 		return self != str;
 	}
 
-	jclass Val() const { return (jclass) _obj; }
-
-	JavaClass Superclass() const {
-		return JavaClass(_env, _env.Val()->GetSuperclass(Val()));
-	}
-
-	jboolean IsAssignableFrom(const JavaClass& cls) const {
-		return _env.Val()->IsAssignableFrom(Val(), cls.Val());
-	}
+	jclass Val() const;
+	JavaClass Superclass() const;
+	jboolean IsAssignableFrom(const JavaClass& cls) const;
 
 	template<typename T>
 	JavaMethod<T> GetMethod(const JavaObject& obj, const char * name) const {

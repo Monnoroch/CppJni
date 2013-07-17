@@ -20,7 +20,7 @@ template<>
 struct JniToJavaProxy<JavaObject> {
 	typedef JavaObject R;
 	typedef jobject jtype;
-	JniToJavaProxy(JavaEnv, const R& v) : val(v) {}
+	JniToJavaProxy(JavaEnv, const R& v); // : val(v) {}
 	jtype Val() const; // { return val.Val(); }
 	const R& val;
 };
@@ -29,7 +29,7 @@ template<>
 struct JniToJavaProxy<JavaString> {
 	typedef JavaString R;
 	typedef jstring jtype;
-	JniToJavaProxy(JavaEnv, const R& v) : val(v) {}
+	JniToJavaProxy(JavaEnv, const R& v); // : val(v) {}
 	jtype Val() const; // { return val.Val(); }
 	const R& val;
 };
@@ -38,7 +38,7 @@ template<>
 struct JniToJavaProxy<JavaBoolean> {
 	typedef JavaBoolean R;
 	typedef jobject jtype;
-	JniToJavaProxy(JavaEnv, const R& v) : val(v) {}
+	JniToJavaProxy(JavaEnv, const R& v); // : val(v) {}
 	jtype Val() const; // { return val.Val(); }
 	const R& val;
 };
@@ -57,8 +57,8 @@ struct JniToJavaProxy<const char*> {
 	typedef const char * R;
 	typedef JavaString Proxy;
 	typedef jstring jtype;
-	JniToJavaProxy(JavaEnv env, R v) : val(env, v) {}
-	jtype Val() const { return val.Val(); }
+	JniToJavaProxy(JavaEnv env, R v); // : val(env, v) {}
+	jtype Val() const; // { return val.Val(); }
 	Proxy val;
 };
 
@@ -67,8 +67,8 @@ struct JniToJavaProxy<std::string> {
 	typedef std::string R;
 	typedef JavaString Proxy;
 	typedef jstring jtype;
-	JniToJavaProxy(JavaEnv env, const R& v) : val(env, v) {}
-	jtype Val() const { return val.Val(); }
+	JniToJavaProxy(JavaEnv env, const R& v); // : val(env, v) {}
+	jtype Val() const; // { return val.Val(); }
 	Proxy val;
 };
 
@@ -86,8 +86,8 @@ struct JniToJavaProxy<std::vector<T>> {
 // struct JniToJavaProxy<TestJniInt> {
 // 	typedef TestJniInt R;
 // 	typedef jint jtype;
-// 	JniToJavaProxy(JavaEnv, const R& v) : val(v) {}
-// 	jtype Val() const { return val.Val(); }
+// 	JniToJavaProxy(JavaEnv, const R& v); // : val(v) {}
+// 	jtype Val() const; // { return val.Val(); }
 // 	const R& val;
 // };
 
@@ -103,7 +103,7 @@ template<>
 struct JniFromJavaProxy<JavaObject> {
 	typedef JavaObject R;
 	typedef jobject jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj(obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj(obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -113,7 +113,7 @@ template<>
 struct JniFromJavaProxy<JavaException> {
 	typedef JavaException R;
 	typedef jthrowable jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -123,7 +123,7 @@ template<>
 struct JniFromJavaProxy<JavaClass> {
 	typedef JavaClass R;
 	typedef jclass jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -133,7 +133,7 @@ template<>
 struct JniFromJavaProxy<JavaString> {
 	typedef JavaString R;
 	typedef jstring jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -143,7 +143,7 @@ template<>
 struct JniFromJavaProxy<JavaBoolean> {
 	typedef JavaBoolean R;
 	typedef jobject jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -163,7 +163,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jboolean>> {
 	typedef JavaArray<jboolean> R;
 	typedef jbooleanArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -173,7 +173,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jchar>> {
 	typedef JavaArray<jchar> R;
 	typedef jcharArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -183,7 +183,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jbyte>> {
 	typedef JavaArray<jbyte> R;
 	typedef jbyteArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -193,7 +193,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jshort>> {
 	typedef JavaArray<jshort> R;
 	typedef jshortArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -203,7 +203,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jint>> {
 	typedef JavaArray<jint> R;
 	typedef jintArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -213,7 +213,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jlong>> {
 	typedef JavaArray<jlong> R;
 	typedef jlongArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -223,7 +223,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jfloat>> {
 	typedef JavaArray<jfloat> R;
 	typedef jfloatArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -233,7 +233,7 @@ template<>
 struct JniFromJavaProxy<JavaArray<jdouble>> {
 	typedef JavaArray<jdouble> R;
 	typedef jdoubleArray jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const; // { return R(_env, _obj); }
 	JavaEnv _env;
 	jtype _obj;
@@ -243,7 +243,7 @@ template<>
 struct JniFromJavaProxy<std::string> {
 	typedef std::string R;
 	typedef jstring jtype;
-	JniFromJavaProxy(JavaEnv env, jobject obj) : _env(env), _obj((jtype) obj) {}
+	JniFromJavaProxy(JavaEnv env, jobject obj); // : _env(env), _obj((jtype) obj) {}
 	R Val() const;
 	JavaEnv _env;
 	jtype _obj;

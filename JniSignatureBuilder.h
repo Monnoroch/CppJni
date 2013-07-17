@@ -14,93 +14,67 @@ struct JniSignatureBuilder {
 
 template<>
 struct JniSignatureBuilder<void> {
-	static std::string Signature() {
-		return "V";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jboolean> {
-	static std::string Signature() {
-		return "Z";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jchar> {
-	static std::string Signature() {
-		return "C";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jbyte> {
-	static std::string Signature() {
-		return "B";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jshort> {
-	static std::string Signature() {
-		return "S";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jint> {
-	static std::string Signature() {
-		return "I";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jlong> {
-	static std::string Signature() {
-		return "J";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jfloat> {
-	static std::string Signature() {
-		return "F";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<jdouble> {
-	static std::string Signature() {
-		return "D";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<JavaObject> {
-	static std::string Signature() {
-		return "Ljava/lang/Object;";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<JavaClass> {
-	static std::string Signature() {
-		return "Ljava/lang/Class;";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<JavaString> {
-	static std::string Signature() {
-		return "Ljava/lang/String;";
-	}
+	static std::string Signature();
 };
 
 template<>
 struct JniSignatureBuilder<JavaBoolean> {
-	static std::string Signature() {
-		return "Ljava/lang/Boolean;";
-	}
+	static std::string Signature();
 };
 
 template<typename T>
@@ -112,9 +86,7 @@ struct JniSignatureBuilder<JavaArray<T>> {
 
 template<>
 struct JniSignatureBuilder<std::string> {
-	static std::string Signature() {
-		return JniSignatureBuilder<JavaString>::Signature();
-	}
+	static std::string Signature();
 };
 
 template<typename T>
@@ -126,9 +98,7 @@ struct JniSignatureBuilder<std::vector<T>> {
 
 // template<>
 // struct JniSignatureBuilder<TestJniInt> {
-// 	static std::string Signature() {
-// 		return "I";
-// 	}
+// 	static std::string Signature();
 // };
 
 

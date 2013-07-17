@@ -20,24 +20,12 @@ class JavaObject {
 		JavaEnv env;
 		jobject obj;
 	};
-
 public:
-	JavaObject() : JavaObject(JavaEnv(), nullptr) {}
-	JavaObject(JavaEnv env, jobject o) : _env(env), _obj(o) {
-#ifdef MSYM_DEBUG_JNI_REF_CNT
-		if(Valid())
-			globalRefCnt++;
-#endif
-	}
-
-	JavaObject(const JavaObjectIniter& o) : JavaObject(o.env, o.obj) {}
-	JavaObject(const JavaObject& o) {
-		Init(o);
-	}
-	JavaObject(JavaObject&& o) : _env(o._env), _obj(o._obj) {
-		o._env = JavaEnv();
-		o._obj = nullptr;
-	}
+	JavaObject();
+	JavaObject(JavaEnv env, jobject o);
+	JavaObject(const JavaObjectIniter& o);
+	JavaObject(const JavaObject& o);
+	JavaObject(JavaObject&& o);
 
 	static JavaObject New(const JavaClass& cls);
 	static JavaObject New(JavaEnv env, const std::string& cls);
@@ -48,44 +36,23 @@ public:
 	template<typename R, typename ... Args>
 	static JavaObject New(JavaEnv env, const std::string& cls, Args&& ... args);
 
-	JavaObject& operator=(const JavaObject& o) {
-		Reset(o);
-		return *this;
-	}
+	JavaObject& operator=(const JavaObject& o);
+	JavaObject& operator=(JavaObject&& o);
 
-	JavaObject& operator=(JavaObject&& o) {
-		std::swap(_env, o._env);
-		std::swap(_obj, o._obj);
-		return *this;
-	}
+	virtual ~JavaObject();
 
-	virtual ~JavaObject() {
-		Destroy();
-	}
-
-	bool operator==(const JavaObject& obj) const {
-		return _env.Val()->IsSameObject(Val(), obj.Val());
-	}
-
-	bool operator!=(const JavaObject& obj) const {
-		return !(*this == obj);
-	}
+	bool operator==(const JavaObject& obj) const;
+	bool operator!=(const JavaObject& obj) const;
 
 	JavaClass GetClass() const;
 
-	bool Valid() const { return _env.Valid() && _obj != nullptr; }
-	JavaEnv Env() const { return _env; }
-
+	bool Valid() const;
+	JavaEnv Env() const;
 	/// Нужно имплементировать!
-	jobject Val() const { return _obj; }
+	jobject Val() const;
 
-	jint MonitorEnter() const {
-		return _env.Val()->MonitorEnter(Val());
-	}
-
-	jint MonitorExit() const {
-		return _env.Val()->MonitorExit(Val());
-	}
+	jint MonitorEnter() const;
+	jint MonitorExit() const;
 
 	template<typename T>
 	JavaMethod<T> GetMethod(const char * name) const;
@@ -99,34 +66,14 @@ public:
 	}
 
 protected:
-	void Reset(const JavaObject& o) {
-		Destroy();
-		Init(o);
-	}
+	void Reset(const JavaObject& o);
 
-private:
-	void Init(const JavaObject& o) {
-		_env = o._env;
-		if(o.Valid()) {
-#ifdef MSYM_DEBUG_JNI_REF_CNT
-		globalRefCnt++;
-#endif
-			_obj = _env.Val()->NewLocalRef(o._obj);
-		}
-	}
-
-	void Destroy() {
-		if(Valid()) {
-#ifdef MSYM_DEBUG_JNI_REF_CNT
-		globalRefCnt--;
-#endif
-			_env.Val()->DeleteLocalRef(_obj);
-		}
-	}
-
-protected:
 	JavaEnv _env;
 	jobject _obj;
+
+private:
+	void Init(const JavaObject& o);
+	void Destroy();
 };
 
 
