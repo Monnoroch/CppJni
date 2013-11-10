@@ -1,4 +1,4 @@
 CppJni
 ======
 
-A convenient c++ wrapper around JNI.
+A convenient C++ wrapper around JNI.
