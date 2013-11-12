@@ -3,3 +3,4 @@
 
 build/osx/JniSource/JniSource.xcodeproj/project.xcworkspace/xcuserdata
 *.xccheckout
+*.xcuserstate
