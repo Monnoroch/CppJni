@@ -4,8 +4,8 @@
 
 #include <JniForwards.h>
 #include <JniJavaEnv.h>
-#include <JniJavaObject.h>
-#include <JniJavaClass.h>
+#include <JniJavaObjectClassDef.h>
+#include <JniJavaClassClassDef.h>
 #include <JniJavaString.h>
 #include <JniJavaArray.h>
 #include <JniProxy.h>

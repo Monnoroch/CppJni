@@ -60,6 +60,11 @@
 		C3345EA7183557E400E7BE5A /* JniProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniProxy.h; sourceTree = "<group>"; };
 		C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniSignatureBuilder.cpp; sourceTree = "<group>"; };
 		C3345EA9183557E400E7BE5A /* JniSignatureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniSignatureBuilder.h; sourceTree = "<group>"; };
+		C3345EB7183559D300E7BE5A /* JniJavaClassClassDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaClassClassDef.h; sourceTree = "<group>"; };
+		C3345EB8183559EF00E7BE5A /* JniJavaClassOtherDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaClassOtherDefs.h; sourceTree = "<group>"; };
+		C3345EB918355B9100E7BE5A /* JniJavaObjectClassDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaObjectClassDef.h; sourceTree = "<group>"; };
+		C3345EBA18355BD200E7BE5A /* JniJavaObjectOtherDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaObjectOtherDefs.h; sourceTree = "<group>"; };
+		C3345EBB1835607100E7BE5A /* JniJavaBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaBoolean.h; sourceTree = "<group>"; };
 		C3A967751832F24800F8272D /* JniTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JniTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A967781832F24800F8272D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C3A9677A1832F24800F8272D /* JniTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = JniTest.1; sourceTree = "<group>"; };
@@ -89,29 +94,34 @@
 			isa = PBXGroup;
 			children = (
 				C3345E92183557E400E7BE5A /* JniForwards.h */,
-				C3345E93183557E400E7BE5A /* JniHelper.cpp */,
 				C3345E94183557E400E7BE5A /* JniHelper.h */,
-				C3345E95183557E400E7BE5A /* JniJavaArray.cpp */,
+				C3345E93183557E400E7BE5A /* JniHelper.cpp */,
 				C3345E96183557E400E7BE5A /* JniJavaArray.h */,
-				C3345E97183557E400E7BE5A /* JniJavaClass.cpp */,
+				C3345E95183557E400E7BE5A /* JniJavaArray.cpp */,
+				C3345EB7183559D300E7BE5A /* JniJavaClassClassDef.h */,
+				C3345EB8183559EF00E7BE5A /* JniJavaClassOtherDefs.h */,
 				C3345E98183557E400E7BE5A /* JniJavaClass.h */,
-				C3345E99183557E400E7BE5A /* JniJavaEnv.cpp */,
+				C3345E97183557E400E7BE5A /* JniJavaClass.cpp */,
 				C3345E9A183557E400E7BE5A /* JniJavaEnv.h */,
-				C3345E9B183557E400E7BE5A /* JniJavaException.cpp */,
+				C3345E99183557E400E7BE5A /* JniJavaEnv.cpp */,
 				C3345E9C183557E400E7BE5A /* JniJavaException.h */,
-				C3345E9D183557E400E7BE5A /* JniJavaField.cpp */,
+				C3345E9B183557E400E7BE5A /* JniJavaException.cpp */,
 				C3345E9E183557E400E7BE5A /* JniJavaField.h */,
+				C3345E9D183557E400E7BE5A /* JniJavaField.cpp */,
 				C3345E9F183557E400E7BE5A /* JniJavaMethod.h */,
-				C3345EA0183557E400E7BE5A /* JniJavaObject.cpp */,
+				C3345EB918355B9100E7BE5A /* JniJavaObjectClassDef.h */,
+				C3345EBA18355BD200E7BE5A /* JniJavaObjectOtherDefs.h */,
 				C3345EA1183557E400E7BE5A /* JniJavaObject.h */,
-				C3345EA2183557E400E7BE5A /* JniJavaString.cpp */,
+				C3345EA0183557E400E7BE5A /* JniJavaObject.cpp */,
 				C3345EA3183557E400E7BE5A /* JniJavaString.h */,
-				C3345EA4183557E400E7BE5A /* JniJavaVM.cpp */,
+				C3345EA2183557E400E7BE5A /* JniJavaString.cpp */,
 				C3345EA5183557E400E7BE5A /* JniJavaVM.h */,
-				C3345EA6183557E400E7BE5A /* JniProxy.cpp */,
+				C3345EA4183557E400E7BE5A /* JniJavaVM.cpp */,
 				C3345EA7183557E400E7BE5A /* JniProxy.h */,
-				C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */,
+				C3345EA6183557E400E7BE5A /* JniProxy.cpp */,
 				C3345EA9183557E400E7BE5A /* JniSignatureBuilder.h */,
+				C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */,
+				C3345EBB1835607100E7BE5A /* JniJavaBoolean.h */,
 			);
 			path = jni;
 			sourceTree = "<group>";

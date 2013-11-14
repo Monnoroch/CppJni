@@ -3,7 +3,7 @@
 #define JNI_JAVA_EXCEPTION_H
 
 #include <JniForwards.h>
-#include <JniJavaObject.h>
+#include <JniJavaObjectClassDef.h>
 
 
 namespace JNI {
