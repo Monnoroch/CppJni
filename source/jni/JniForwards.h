@@ -159,7 +159,7 @@ struct JniFromJavaProxy;
 template<typename T, typename J>
 static inline JniFromJavaProxy<T> FromJavaProxy(JavaEnv env, J v);
 
-}
+} // namespace JNI
 
 // namespace JNI {
 

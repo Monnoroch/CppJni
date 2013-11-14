@@ -1,6 +1,6 @@
 #pragma once
-#ifndef JNI_JAVA_OBJECT_H
-#define JNI_JAVA_OBJECT_H
+#ifndef JNI_JAVA_OBJECT_CLASS_DEF_H
+#define JNI_JAVA_OBJECT_CLASS_DEF_H
 
 #include <JniForwards.h>
 #include <JniJavaEnv.h>
@@ -74,15 +74,6 @@ protected:
 private:
 	void Init(const JavaObject& o);
 	void Destroy();
-};
-
-
-class JavaBoolean : public JavaObject {
-public:
-	JavaBoolean() : JavaObject() {}
-	JavaBoolean(JavaEnv env, jobject obj) : JavaObject(env, obj) {}
-	JavaBoolean(const JavaBoolean& str) : JavaObject(str) {}
-	JavaBoolean(JavaBoolean&& str) : JavaObject(str) {}
 };
 
 }

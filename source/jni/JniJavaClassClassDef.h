@@ -1,11 +1,10 @@
 #pragma once
-#ifndef JNI_JAVA_CLASS_H
-#define JNI_JAVA_CLASS_H
+#ifndef JNI_JAVA_CLASS_CLASS_DEF_H
+#define JNI_JAVA_CLASS_CLASS_DEF_H
 
 #include <JniForwards.h>
 #include <JniProxy.h>
-#include <JniJavaObject.h>
-#include <JniSignatureBuilder.h>
+#include <JniJavaObjectClassDef.h>
 
 
 namespace JNI {
@@ -101,59 +100,6 @@ public:
 private:
 	static jclass GetClass(JavaEnv env, const char * name);
 };
-
-////////////////////////////////////////////////////////////////////////////////////
-
-template<typename R, typename ... Args>
-struct JavaClass::MethodGetter<R(Args...)> {
-	jmethodID Get(const JavaClass& self, const char * name) const {
-		return self.Env().Val()->GetMethodID(self.Val(), name, JniSignatureBuilder<R(Args...)>::Signature().c_str());
-	}
-};
-
-template<typename R, typename ... Args>
-struct JavaClass::StaticMethodGetter<R(Args...)> {
-	jmethodID Get(const JavaClass& self, const char * name) const {
-		return self.Env().Val()->GetStaticMethodID(self.Val(), name, JniSignatureBuilder<R(Args...)>::Signature().c_str());
-	}
-};
-
-template<typename T>
-struct JavaClass::FieldGetter {
-	jfieldID Get(const JavaClass& self, const char * name) const {
-		return self.Env().Val()->GetFieldID(self.Val(), name, JniSignatureBuilder<T>::Signature().c_str());
-	}
-};
-
-template<typename T>
-struct JavaClass::StaticFieldGetter {
-	jfieldID Get(const JavaClass& self, const char * name) const {
-		return self.Env().Val()->GetStaticFieldID(self.Val(), name, JniSignatureBuilder<T>::Signature().c_str());
-	}
-};
-
-/////////////////////////////////////////////////////////////////////////////////////
-
-// Методы из JavaObject. Иначе никак нельзя: циклические зависимости в шаблонных методах.
-template<typename T>
-JavaMethod<T> JavaObject::GetMethod(const char * name) const {
-	return GetClass().GetMethod<T>(*this, name);
-}
-
-template<typename T>
-JavaField<T> JavaObject::GetField(const char * name) const {
-	return GetClass().GetField<T>(*this, name);
-}
-
-template<typename R, typename ... Args>
-JavaObject JavaObject::New(const JavaClass& cls, Args&& ... args) {
-	return cls.NewObject<R, Args...>(std::forward<Args>(args)...);
-}
-
-template<typename R, typename ... Args>
-JavaObject JavaObject::New(JavaEnv env, const std::string& cls, Args&& ... args) {
-	return New(env.FindClass(cls), std::forward<Args>(args)...);
-}
 
 }
 
