@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3345EAA183557E400E7BE5A /* JniHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E93183557E400E7BE5A /* JniHelper.cpp */; };
+		C3345EAB183557E400E7BE5A /* JniJavaArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E95183557E400E7BE5A /* JniJavaArray.cpp */; };
+		C3345EAC183557E400E7BE5A /* JniJavaClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E97183557E400E7BE5A /* JniJavaClass.cpp */; };
+		C3345EAD183557E400E7BE5A /* JniJavaEnv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E99183557E400E7BE5A /* JniJavaEnv.cpp */; };
+		C3345EAE183557E400E7BE5A /* JniJavaException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E9B183557E400E7BE5A /* JniJavaException.cpp */; };
+		C3345EAF183557E400E7BE5A /* JniJavaField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345E9D183557E400E7BE5A /* JniJavaField.cpp */; };
+		C3345EB0183557E400E7BE5A /* JniJavaObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345EA0183557E400E7BE5A /* JniJavaObject.cpp */; };
+		C3345EB1183557E400E7BE5A /* JniJavaString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345EA2183557E400E7BE5A /* JniJavaString.cpp */; };
+		C3345EB2183557E400E7BE5A /* JniJavaVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345EA4183557E400E7BE5A /* JniJavaVM.cpp */; };
+		C3345EB3183557E400E7BE5A /* JniProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345EA6183557E400E7BE5A /* JniProxy.cpp */; };
+		C3345EB4183557E400E7BE5A /* JniSignatureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */; };
 		C3A967791832F24800F8272D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3A967781832F24800F8272D /* main.cpp */; };
 		C3A9677B1832F24800F8272D /* JniTest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3A9677A1832F24800F8272D /* JniTest.1 */; };
 /* End PBXBuildFile section */
@@ -25,6 +36,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C3345E92183557E400E7BE5A /* JniForwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniForwards.h; sourceTree = "<group>"; };
+		C3345E93183557E400E7BE5A /* JniHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniHelper.cpp; sourceTree = "<group>"; };
+		C3345E94183557E400E7BE5A /* JniHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniHelper.h; sourceTree = "<group>"; };
+		C3345E95183557E400E7BE5A /* JniJavaArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaArray.cpp; sourceTree = "<group>"; };
+		C3345E96183557E400E7BE5A /* JniJavaArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaArray.h; sourceTree = "<group>"; };
+		C3345E97183557E400E7BE5A /* JniJavaClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaClass.cpp; sourceTree = "<group>"; };
+		C3345E98183557E400E7BE5A /* JniJavaClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaClass.h; sourceTree = "<group>"; };
+		C3345E99183557E400E7BE5A /* JniJavaEnv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaEnv.cpp; sourceTree = "<group>"; };
+		C3345E9A183557E400E7BE5A /* JniJavaEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaEnv.h; sourceTree = "<group>"; };
+		C3345E9B183557E400E7BE5A /* JniJavaException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaException.cpp; sourceTree = "<group>"; };
+		C3345E9C183557E400E7BE5A /* JniJavaException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaException.h; sourceTree = "<group>"; };
+		C3345E9D183557E400E7BE5A /* JniJavaField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaField.cpp; sourceTree = "<group>"; };
+		C3345E9E183557E400E7BE5A /* JniJavaField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaField.h; sourceTree = "<group>"; };
+		C3345E9F183557E400E7BE5A /* JniJavaMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaMethod.h; sourceTree = "<group>"; };
+		C3345EA0183557E400E7BE5A /* JniJavaObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaObject.cpp; sourceTree = "<group>"; };
+		C3345EA1183557E400E7BE5A /* JniJavaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaObject.h; sourceTree = "<group>"; };
+		C3345EA2183557E400E7BE5A /* JniJavaString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaString.cpp; sourceTree = "<group>"; };
+		C3345EA3183557E400E7BE5A /* JniJavaString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaString.h; sourceTree = "<group>"; };
+		C3345EA4183557E400E7BE5A /* JniJavaVM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniJavaVM.cpp; sourceTree = "<group>"; };
+		C3345EA5183557E400E7BE5A /* JniJavaVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniJavaVM.h; sourceTree = "<group>"; };
+		C3345EA6183557E400E7BE5A /* JniProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniProxy.cpp; sourceTree = "<group>"; };
+		C3345EA7183557E400E7BE5A /* JniProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniProxy.h; sourceTree = "<group>"; };
+		C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JniSignatureBuilder.cpp; sourceTree = "<group>"; };
+		C3345EA9183557E400E7BE5A /* JniSignatureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JniSignatureBuilder.h; sourceTree = "<group>"; };
 		C3A967751832F24800F8272D /* JniTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JniTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A967781832F24800F8272D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C3A9677A1832F24800F8272D /* JniTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = JniTest.1; sourceTree = "<group>"; };
@@ -41,9 +76,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3345E90183557E400E7BE5A /* source */ = {
+			isa = PBXGroup;
+			children = (
+				C3345E91183557E400E7BE5A /* jni */,
+			);
+			name = source;
+			path = ../../../source;
+			sourceTree = "<group>";
+		};
+		C3345E91183557E400E7BE5A /* jni */ = {
+			isa = PBXGroup;
+			children = (
+				C3345E92183557E400E7BE5A /* JniForwards.h */,
+				C3345E93183557E400E7BE5A /* JniHelper.cpp */,
+				C3345E94183557E400E7BE5A /* JniHelper.h */,
+				C3345E95183557E400E7BE5A /* JniJavaArray.cpp */,
+				C3345E96183557E400E7BE5A /* JniJavaArray.h */,
+				C3345E97183557E400E7BE5A /* JniJavaClass.cpp */,
+				C3345E98183557E400E7BE5A /* JniJavaClass.h */,
+				C3345E99183557E400E7BE5A /* JniJavaEnv.cpp */,
+				C3345E9A183557E400E7BE5A /* JniJavaEnv.h */,
+				C3345E9B183557E400E7BE5A /* JniJavaException.cpp */,
+				C3345E9C183557E400E7BE5A /* JniJavaException.h */,
+				C3345E9D183557E400E7BE5A /* JniJavaField.cpp */,
+				C3345E9E183557E400E7BE5A /* JniJavaField.h */,
+				C3345E9F183557E400E7BE5A /* JniJavaMethod.h */,
+				C3345EA0183557E400E7BE5A /* JniJavaObject.cpp */,
+				C3345EA1183557E400E7BE5A /* JniJavaObject.h */,
+				C3345EA2183557E400E7BE5A /* JniJavaString.cpp */,
+				C3345EA3183557E400E7BE5A /* JniJavaString.h */,
+				C3345EA4183557E400E7BE5A /* JniJavaVM.cpp */,
+				C3345EA5183557E400E7BE5A /* JniJavaVM.h */,
+				C3345EA6183557E400E7BE5A /* JniProxy.cpp */,
+				C3345EA7183557E400E7BE5A /* JniProxy.h */,
+				C3345EA8183557E400E7BE5A /* JniSignatureBuilder.cpp */,
+				C3345EA9183557E400E7BE5A /* JniSignatureBuilder.h */,
+			);
+			path = jni;
+			sourceTree = "<group>";
+		};
 		C3A9676C1832F24800F8272D = {
 			isa = PBXGroup;
 			children = (
+				C3345E90183557E400E7BE5A /* source */,
 				C3A967771832F24800F8272D /* JniTest */,
 				C3A967761832F24800F8272D /* Products */,
 			);
@@ -117,6 +193,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A967791832F24800F8272D /* main.cpp in Sources */,
+				C3345EAB183557E400E7BE5A /* JniJavaArray.cpp in Sources */,
+				C3345EB2183557E400E7BE5A /* JniJavaVM.cpp in Sources */,
+				C3345EAD183557E400E7BE5A /* JniJavaEnv.cpp in Sources */,
+				C3345EAF183557E400E7BE5A /* JniJavaField.cpp in Sources */,
+				C3345EB0183557E400E7BE5A /* JniJavaObject.cpp in Sources */,
+				C3345EB3183557E400E7BE5A /* JniProxy.cpp in Sources */,
+				C3345EAE183557E400E7BE5A /* JniJavaException.cpp in Sources */,
+				C3345EAC183557E400E7BE5A /* JniJavaClass.cpp in Sources */,
+				C3345EAA183557E400E7BE5A /* JniHelper.cpp in Sources */,
+				C3345EB4183557E400E7BE5A /* JniSignatureBuilder.cpp in Sources */,
+				C3345EB1183557E400E7BE5A /* JniJavaString.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +245,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/System/Library/Frameworks/JavaVM.framework/Headers,
-					../../../source,
+					../../../source/jni,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -196,7 +283,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/System/Library/Frameworks/JavaVM.framework/Headers,
-					../../../source,
+					../../../source/jni,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
@@ -236,6 +323,7 @@
 				C3A967801832F24800F8272D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

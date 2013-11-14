@@ -1,4 +1,4 @@
-#include <jni/JniForwards.h>
+#include <JniForwards.h>
 
 int main()
 {}
