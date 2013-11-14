@@ -1,4 +1,4 @@
-#include <JniJavaObject.h>
+#include <JniJavaObjectClassDef.h>
 #include <JniJavaClass.h>
 
 

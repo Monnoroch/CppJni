@@ -4,6 +4,7 @@
 #include <JniJavaClass.h>
 #include <JniJavaString.h>
 #include <JniJavaArray.h>
+#include <JniJavaBoolean.h>
 
 
 namespace JNI {
